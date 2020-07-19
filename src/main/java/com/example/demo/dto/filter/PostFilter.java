@@ -1,4 +1,4 @@
-package com.example.demo.filter;
+package com.example.demo.dto.filter;
 
 public class PostFilter {
 

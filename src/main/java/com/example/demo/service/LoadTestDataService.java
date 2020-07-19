@@ -30,4 +30,7 @@ public class LoadTestDataService {
 		this.postRepository.saveAll(posts);
 	}
 
+	public void deletePosts() {
+		this.postRepository.deleteAll();
+	}
 }

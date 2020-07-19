@@ -16,7 +16,8 @@ spring:
     deserialization:
       fail-on-unknown-properties: false
   mvc.servlet.path: /
-
+  main.lazy-initialization: true
+  
 server.port: 8080
 
 springdoc.swagger-ui.path: /swagger-ui

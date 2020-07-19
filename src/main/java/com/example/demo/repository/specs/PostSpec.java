@@ -1,4 +1,4 @@
-package com.example.demo.specs;
+package com.example.demo.repository.specs;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +8,7 @@ import javax.persistence.criteria.Predicate;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.example.demo.filter.PostFilter;
+import com.example.demo.dto.filter.PostFilter;
 import com.example.demo.model.Post;
 import com.example.demo.model.Post_;
 import com.example.demo.utils.SpecUtils;
