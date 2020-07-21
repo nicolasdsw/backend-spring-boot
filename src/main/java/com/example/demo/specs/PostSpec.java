@@ -1,4 +1,4 @@
-package com.example.demo.repository.specs;
+package com.example.demo.specs;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,6 @@ import org.springframework.data.jpa.domain.Specification;
 import com.example.demo.dto.filter.PostFilter;
 import com.example.demo.model.Post;
 import com.example.demo.model.Post_;
-import com.example.demo.utils.SpecUtils;
 
 public abstract class PostSpec {
 
