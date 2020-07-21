@@ -13,7 +13,7 @@ import com.example.demo.dto.req.PostReqDTO;
 import com.example.demo.dto.res.PostResDTO;
 import com.example.demo.model.Post;
 import com.example.demo.repository.PostRepository;
-import com.example.demo.specs.PostSpec;
+import com.example.demo.specs.PostSpecs;
 
 @Service
 public class PostService {
@@ -21,9 +21,13 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 
-	public Page<Post> index(Optional<PostFilter> filter, Pageable pageable) {
-		Specification<Post> spec = PostSpec.specByFilter(filter);
-		return this.postRepository.findAll(spec, pageable);
+	private Post save(Post post) {
+		return this.postRepository.save(post);
+	}
+
+	public Page<PostResDTO> index(Optional<PostFilter> filter, Pageable pageable) {
+		Specification<Post> spec = PostSpecs.specByFilter(filter);
+		return this.postRepository.findAll(spec, pageable).map(PostResDTO::new);
 	}
 
 	public Optional<PostResDTO> show(Long id) {
@@ -32,13 +36,13 @@ public class PostService {
 
 	public Optional<PostResDTO> store(PostReqDTO dto) {
 		Post post = dto.toModel(new Post());
-		post = this.postRepository.save(post);
+		post = this.save(post);
 		return this.show(post.getId());
 	}
 
 	public Optional<PostResDTO> update(Long id, PostReqDTO dto) {
 		Post post = dto.toModel(this.postRepository.findById(id).get());
-		post = this.postRepository.save(post);
+		post = this.save(post);
 		return this.show(post.getId());
 	}
 

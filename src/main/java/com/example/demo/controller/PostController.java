@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.filter.PostFilter;
 import com.example.demo.dto.req.PostReqDTO;
 import com.example.demo.dto.res.PostResDTO;
-import com.example.demo.model.Post;
 import com.example.demo.service.PostService;
 
 @RestController
@@ -31,7 +30,7 @@ public class PostController {
 	private PostService postService;
 
 	@GetMapping
-	public Page<Post> index(Optional<PostFilter> filter, @PageableDefault Pageable pageable) {
+	public Page<PostResDTO> index(Optional<PostFilter> filter, @PageableDefault Pageable pageable) {
 		return this.postService.index(filter, pageable);
 	}
 
