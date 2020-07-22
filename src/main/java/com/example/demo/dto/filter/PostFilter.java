@@ -5,7 +5,8 @@ public class PostFilter {
 	private Long id;
 	private String title;
 	private String body;
-
+	private String any;
+	
 	public PostFilter() {
 	}
 
@@ -31,5 +32,13 @@ public class PostFilter {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public String getAny() {
+		return any;
+	}
+
+	public void setAny(String any) {
+		this.any = any;
 	}
 }

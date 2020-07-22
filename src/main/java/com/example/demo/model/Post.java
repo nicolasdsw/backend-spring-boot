@@ -8,6 +8,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.CreatedBy;
@@ -34,6 +35,8 @@ public class Post {
 	@NotBlank
 	@Column(length = 500)
 	private String body;
+	@ManyToOne
+	private User user;
 
 	public Post() {
 	}
@@ -56,7 +59,7 @@ public class Post {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
@@ -95,5 +98,13 @@ public class Post {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
