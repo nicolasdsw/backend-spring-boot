@@ -34,16 +34,15 @@ public class PostService {
 		return this.postRepository.findById(id).map(PostResDTO::new);
 	}
 
-	public Optional<PostResDTO> store(PostReqDTO dto) {
+	public Long store(PostReqDTO dto) {
 		Post post = dto.toModel(new Post());
 		post = this.save(post);
-		return this.show(post.getId());
+		return post.getId();
 	}
 
-	public Optional<PostResDTO> update(Long id, PostReqDTO dto) {
+	public void update(Long id, PostReqDTO dto) {
 		Post post = dto.toModel(this.postRepository.findById(id).get());
-		post = this.save(post);
-		return this.show(post.getId());
+		this.save(post);
 	}
 
 	public void destroy(Long id) {
