@@ -1,0 +1,100 @@
+spring dependencies
+
+data-jpa
+validation
+web
+devtools
+h2
+configuration-processor
+
+pom.xml
+
+<springdoc.version>1.4.3</springdoc.version>
+<dependency>
+	<groupId>org.springdoc</groupId>
+	<artifactId>springdoc-openapi-ui</artifactId>
+	<version>${springdoc.version}</version>
+</dependency>
+<dependency>
+	<groupId>org.springdoc</groupId>
+	<artifactId>springdoc-openapi-data-rest</artifactId>
+	<version>${springdoc.version}</version>
+</dependency>
+
+<plugin>
+	<groupId>org.bsc.maven</groupId>
+	<artifactId>maven-processor-plugin</artifactId>
+	<version>3.3.3</version>
+	<executions>
+		<execution>
+			<id>process</id>
+			<goals>
+				<goal>process</goal>
+			</goals>
+			<phase>generate-sources</phase>
+			<configuration>
+				<processors>
+					<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+				</processors>
+			</configuration>
+		</execution>
+	</executions>
+	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+	</dependencies>
+</plugin>
+
+criar pacotes:
+config
+controller
+dto.filter
+dto.req
+dto.res
+model
+repository
+service
+specs
+
+configs:
+.SwaggerConfig
+.CorsConfig
+.JpaAuditingConfig
+
+application.yml:
+spring:
+  datasource:
+    url: jdbc:h2:~/demo;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa: 
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    open-in-view: true
+    hibernate.ddl-auto: update
+    properties: 
+      hibernate.format_sql: true
+  jackson:
+     deserialization:
+      fail-on-unknown-properties: false
+  main.lazy-initialization: true
+  
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    disable-swagger-default-url: false
+
+criar controller Index com "Hello World";
+
+@EntityListeners(AuditingEntityListener.class)
+
+criar model
+criar dtos { filter, req, res }
+criar repositories
+criar specs
+criar service
+criar controller
